@@ -1,26 +1,88 @@
+import random
 
-class EmapType:
+class EmapNodeType:
     Player = "Player"
-    Zombie = "Zombie"
-    ZombieHazmat = "ZombieHazmat"
     Weapon_Shotgun = "Weapon_Shotgun"
     Weapon_SuperShotgun="Weapon_SuperShotgun"
+    Light="Light"
+    Armor_Large="Armor_Large"
+    Ammo_Bullets_Large="Ammo_Bullets_Large"
+    Ammo_Shells_Large="Ammo_Shells_Large"
+    Health_Small="Health_Small"
+    Weapon_Pistol="Weapon_Pistol"
+    Weapon_SMG="Weapon_SMG"
+    Zombie = "Zombie"
+    ZombieHazmat = "ZombieHazmat"
+    ZombieHeavy_Minigun = "ZombieHeavy_Minigun"
+    ZombieSniper = "ZombieSniper"
+    Soldier_Shotgun = "Soldier_Shotgun"
+    Cryomancer = "Cryomancer"
+    Harbinger = "Harbinger"
+    Phantom = "Phantom"
+    Bloater = "Bloater"
+    Monster_Crawler = "Monster_Crawler"
+    Fiend = "Fiend"
+    Monster_Hunter = "Monster_Hunter"
+    Lunger = "Lunger"
+    SkullFish = "SkullFish"
+    Monster_Slayer = "Monster_Slayer"
+    VoidReaper = "VoidReaper"
+
+    smallMonsterNames = [
+        Zombie,
+        ZombieHazmat,
+        ZombieHeavy_Minigun,
+        Soldier_Shotgun,
+        Cryomancer,
+        Harbinger,
+    ]
+    bigMonsterNames = [
+        ZombieSniper,
+        Phantom,
+        Bloater,
+        Monster_Crawler,
+        Fiend,
+        Monster_Hunter,
+        Lunger,
+        SkullFish,
+        Monster_Slayer,
+        VoidReaper,
+    ]
+
+    def getRandomSmallMonster():
+        return random.choice(EmapNodeType.smallMonsterNames)
+
+    def getRandomBigMonster():
+        return random.choice(EmapNodeType.bigMonsterNames)
+
 
 idCounter=0
 
 class Node:
-    def __init__(self, type, nodeName, pos="0,0,0", rotation="0,0,0", layer=-1, parent=-1):
+    def __init__(self, type, pos, extras):
         global idCounter
         idCounter += 1
         self.id = idCounter
         self.type = type
-        self.nodeName = nodeName
+        self.nodeName = type
         self.pos = pos
-        self.rotation = rotation
-        self.layer = layer
-        self.parent = parent
+        self.extras = extras
+        self.rotation = "0,0,0"
+        self.layer = -1
+        self.parent = -1
 
     def printNode(self):
+        print("Node{")
+        print(self.type)
+        for extra in self.extras:
+            print(extra + "=" + self.extras[extra])
+        print("pos=" + self.pos)
+        print("rotation=" + self.rotation)
+        print("id=" + str(self.id))
+        print("layer=" + str(self.layer))
+        print("parent=" + str(self.parent))
+        print("nodeName=" + str(self.nodeName))
+        print("}")
 
 #player extra       
 #giveFists=True
@@ -28,28 +90,7 @@ class Node:
 #startNoHud=False
 #enableRespawn=False
 
-#pos=74,0,4.75
-#nodeName=PlayerStart(Clone)
-#}
-
-#
-#startTriggered=True
-#useEffect=False
-#stationary=False
-#delayMin=0
-#delayMax=0
-#invisible=False
-#invisibleHealth=50
-#pos=84.5,0,15.75
-#rotation=0,0,0
-#id=238
-#layer=-1
-#parent=-1
-#nodeName=Zombie(Clone)
-#}
-
-#Node{
-#
+# monster extras
 #startTriggered=True
 ##useEffect=False
 #stationary=False
@@ -59,12 +100,12 @@ class Node:
 #invisibleHealth=50
 #pos=95,0,5.5
 
+#Armor_Large
+#Ammo_Bullets_Large
+#Ammo_Shells_Large
+#Health_Small
+#Weapon_Pistol
+#Weapon_SMG
 #startSpawned=True
 #triggerEverySpawn=True
 #triggerEachPlayer=False
-#pos=68.25,0,4.5
-
-##startSpawned=True
-#triggerEverySpawn=True
-#triggerEachPlayer=False
-#pos=57.25,0,4

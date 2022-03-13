@@ -15,7 +15,10 @@ class Brush:
         self.trisArray.reverse()
         for x in range(len(self.trisArray)):
             uvs2+="%s;" % self.uvArray[self.trisArray[x]]
-        print(brush_text % (self.verts,self.materialNr,tris,uvs,tris2,uvs2))
+        print(brush_text % (self.verts,self.materialNr,tris,uvs,self.materialNr,tris2,uvs2))
+
+# mappingType=0 == World
+# mappingType=2 == HotSpot
 
 brush_text="""Brush{
 parent=-1
@@ -27,7 +30,7 @@ edges=
 Face{
 surf={
 localMapping=False
-mappingType=0
+mappingType=2
 material=%d
 color=0
 colorEmissive=0
@@ -47,8 +50,8 @@ uvs=%s
 Face{
 surf={
 localMapping=False
-mappingType=0
-material=0
+mappingType=2
+material=%d
 color=0
 colorEmissive=0
 seed=843
