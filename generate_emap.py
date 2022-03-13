@@ -35,14 +35,25 @@ for x in range(w+1):
 
         if(x<w and y<h):
             emap.addFloor(x,y)
+            if (x+y)%2==0:
+                emap.addNode(EmapNodeType.Health_Small, getNodePos(x,y), {})
+            else:
+                emap.addNode(EmapNodeType.Ammo_Bullets_Small, getNodePos(x,y), {})
+
             if(x==0 and y==0):
                 emap.addNode(EmapNodeType.Player, getNodePos(x,y), {})
-            elif(x==1 and y==0):
                 emap.addNode(EmapNodeType.Weapon_Pistol, getNodePos(x,y), {})
+                emap.addNode(EmapNodeType.Weapon_Shotgun, getNodePos(x,y), {})
+                emap.addNode(EmapNodeType.Weapon_SMG, getNodePos(x,y), {})
+                #emap.addNode(EmapNodeType.Weapon_Mammoth, getNodePos(x,y), {})
+                #emap.addNode(EmapNodeType.Weapon_AutoShotgun, getNodePos(x,y), {})
+                emap.addNode(EmapNodeType.AutoMap, getNodePos(x,y), {})
+            elif(x==1 and y==0):
+                emap.addNode(EmapNodeType.Weapon_Plexus, getNodePos(x,y), {})
             elif(x==0 and y==1):
                 emap.addNode(EmapNodeType.Weapon_SuperShotgun, getNodePos(x,y), {})
             elif(x==1 and y==1):
-                emap.addNode(EmapNodeType.Weapon_SMG, getNodePos(x,y), {})
+                emap.addNode(EmapNodeType.Weapon_RocketLauncher, getNodePos(x,y), {})
             elif(x%5==0 and y%5==0):
                 lightExtras = {
                     "isOn":"True",
@@ -58,9 +69,12 @@ for x in range(w+1):
                 }
                 emap.addNode(EmapNodeType.Light, getLightPos(x,y), lightExtras)
                 emap.addNode(EmapNodeType.Ammo_Shells_Large, getNodePos(x,y), {})
+                emap.addNode(EmapNodeType.getRandomMiddleMonster(), getNodePos(x,y), {})
+            elif(x==9 and y==9):
+                emap.addNode(EmapNodeType.LevelEnd, getNodePos(x,y), {}) # TODO: this needs a trigger
+            elif(x>7 and y>7):
                 emap.addNode(EmapNodeType.getRandomBigMonster(), getNodePos(x,y), {})
             else:
                 emap.addNode(EmapNodeType.getRandomSmallMonster(), getNodePos(x,y), {})
-                emap.addNode(EmapNodeType.Ammo_Bullets_Large, getNodePos(x,y), {})
 
 emap.printMap()
