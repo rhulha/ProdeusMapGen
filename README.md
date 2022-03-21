@@ -12,5 +12,5 @@ Please adjust this folder first.
 Then right click anywhere to start Prodeus using a hard coded folder.
 Please adjust this folder first.
 
-
+<img src="https://i.imgur.com/aAbJufO.png" height="220">
 
