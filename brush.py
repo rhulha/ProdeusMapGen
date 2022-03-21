@@ -5,7 +5,7 @@ class Brush:
         self.trisArray = trisArray
         self.materialNr = materialNr
 
-    def printBrush(self):
+    def getBrushText(self):
         tris=";".join([str(e) for e in self.trisArray])
         tris2=";".join([str(e) for e in reversed(self.trisArray)])
         uvs=""
@@ -15,7 +15,7 @@ class Brush:
         self.trisArray.reverse()
         for x in range(len(self.trisArray)):
             uvs2+="%s;" % self.uvArray[self.trisArray[x]]
-        print(brush_text % (self.verts,self.materialNr,tris,uvs,self.materialNr,tris2,uvs2))
+        return brush_text % (self.verts,self.materialNr,tris,uvs,self.materialNr,tris2,uvs2)
 
 # mappingType=0 == World
 # mappingType=2 == HotSpot

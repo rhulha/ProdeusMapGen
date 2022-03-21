@@ -98,18 +98,21 @@ class Node:
         self.layer = -1
         self.parent = -1
 
-    def printNode(self):
-        print("Node{")
-        print(self.type)
+    def getNodeText(self):
+        s = ""
+        s+="Node{\n"
+        s+=self.type +"\n"
         for extra in self.extras:
-            print(extra + "=" + self.extras[extra])
-        print("pos=" + self.pos)
-        print("rotation=" + self.rotation)
-        print("id=" + str(self.id))
-        print("layer=" + str(self.layer))
-        print("parent=" + str(self.parent))
-        print("nodeName=" + str(self.nodeName))
-        print("}")
+            s+=extra + "=" + self.extras[extra] +"\n"
+        s+="pos=" + self.pos +"\n"
+        s+="rotation=" + self.rotation +"\n"
+        
+        s+="id=" + str(self.id) +"\n"
+        s+="layer=" + str(self.layer) +"\n"
+        s+="parent=" + str(self.parent) +"\n"
+        s+="nodeName=" + str(self.nodeName) +"\n"
+        s+="}\n"
+        return s
 
 #player extra       
 #giveFists=True

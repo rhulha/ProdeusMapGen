@@ -1,3 +1,4 @@
+from __future__ import with_statement
 from header import header_text
 from brush import Brush
 from node import Node
@@ -86,19 +87,21 @@ class Emap:
         self.addBrush(verts, [uvTopLeft,uvTopRight,uvBotLeft,uvBotRight], trisArray, self.wallMaterial)
 
 
-    def printMap(self):
-        print(header_text)
-        print("Materials{")
-        for material in self.materials:
-            print(material)
-        print("}")
+    def writeMap(self, filename):
+        with open(filename, 'w') as f:
+            f.write(header_text)
+            f.write("\nMaterials{\n")
+            for material in self.materials:
+                f.write(material)
+                f.write("\n")
+            f.write("}\n")
 
-        print("Brushes{")
-        for brush in self.brushes:
-            brush.printBrush()
-        print("}")
+            f.write("\nBrushes{\n")
+            for brush in self.brushes:
+                f.write(brush.getBrushText())
+            f.write("}\n")
 
-        print("Nodes{")
-        for node in self.nodes:
-            node.printNode()
-        print("}")
+            f.write("Nodes{\n")
+            for node in self.nodes:
+                f.write(node.getNodeText())
+            f.write("}\n")
